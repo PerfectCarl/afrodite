@@ -41,7 +41,8 @@ namespace Afrodite
 		{
 			_vala_symbol_fqn = null;
 			this._codedom = codedom;
-
+			var has_unresolved_directive = false ;
+			message ("HEN") ;
 			// first resolve the using directives
 			if (_codedom.has_source_files) {
 				foreach (SourceFile file in _codedom.source_files) {
@@ -52,6 +53,7 @@ namespace Afrodite
 								using_directive.symbol = _codedom.lookup (using_directive.type_name);
 								if (using_directive.unresolved)
 									message ("file %s - can't resolve using directive: %s", file.filename, using_directive.type_name);
+									has_unresolved_directive = true ;
 							}
 						}
 					}
@@ -60,7 +62,9 @@ namespace Afrodite
 
 			if (codedom.unresolved_symbols.size > 0) {
 				Afrodite.Utils.trace ("(symbol resolver): symbols to resolve %d", codedom.unresolved_symbols.size);
-				visit_symbols (codedom.unresolved_symbols);
+				// CARL causes stackoverflow of unknown directive 
+				if( !has_unresolved_directive)
+					visit_symbols (codedom.unresolved_symbols);
 				Afrodite.Utils.trace ("(symbol resolver): unresolved symbol after resolve process %d", codedom.unresolved_symbols.size);
 #if DEBUG
 				int count = codedom.unresolved_symbols.size > 5 ? 5 : codedom.unresolved_symbols.size;

@@ -1,0 +1,33 @@
+
+# You can also set Debug as your default build
+set (BUILD_TYPE "Debug")
+
+# This new application will conquer the world
+library (
+    NAME
+       afrodite
+    AUTHOR
+        "Carl P. <name.is.carl@gmail.com>"
+    HOMEPAGE
+        "https://github.com/PerfectCarl/afrodite"      
+    LICENSE
+        "LGPL"  
+    TITLE
+        "This application will be great"
+    VERSION
+        "0.28"
+    SOURCE_PATH
+        src
+    LINKING
+        shared    
+    PACKAGES
+        libvala-0.28
+        gio-2.0 
+    OPTIONS
+        --target-glib=2.32
+)
+
+# Extra steps 
+# sudo rm /usr/lib/libafrodite.so
+# sudo rm /usr/lib/libafrodite-0.28.so
+# sudo ln -s  /usr/lib/x86_64-linux-gnu/libafrodite.so  /usr/lib/libafrodite.so

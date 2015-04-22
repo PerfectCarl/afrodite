@@ -30,7 +30,7 @@ namespace Afrodite.Utils
 	 */
 	public static inline void log_message (string log_domain, string format, va_list args)
 	{
-		logv (log_domain, GLib.LogLevelFlags.LEVEL_INFO, format, args);
+		logv (log_domain, GLib.LogLevelFlags.LEVEL_WARNING, format, args);
 	}
 
 	[Diagnostics]
